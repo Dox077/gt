@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>IP Tracker</title>
+  <title>Get IP Address and Save to Google Sheet</title>
 </head>
 <body>
-    <h1>IP Tracker</h1>
-    <form id="ipForm">
-        <button type="submit">Track My IP</button>
-    </form>
+  <h1>Get IP Address and Save to Google Sheet</h1>
+  <button onclick="saveIPAddress()">Save IP Address</button>
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script>
+    // Load the Google Sheets API library
+    gapi.load('client', initClient);
+
+    // Set up the authentication credentials
+    function initClient() {
+      gapi.client.init({
+        apiKey: 'AIzaSyA-hcANdJmipBAeDxGO7A7I2Xao5xex0XE',
+        clientId: '1023049278699-489s2oqrr75au1a0e214hjvtqr99kfbk.apps.googleusercontent.com',
+        discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+        scope: 'https://www.googleapis.com/auth/spreadsheets',
+      }).then(() => {
+        console.log('Google Sheets API initialized.');
+      }, (error) => {
+        console.error('Error initializing Google Sheets API:', error);
+      });
+    }
+
+    // Get the IP address of the user
+    async function getIPAddress() {
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      return data.ip;
+    }
+
+    // Save the IP address to a Google Sheet
+    async function saveIPAddress() {
+      const ipAddress = await getIPAddress();
+      const spreadsheetId = '1UDDarsUSFfdEhALQUlPvONklLpR0jzeV5kTaJ6Nslr4';
+      const range = 'Sheet1!A1';
+      const valueInputOption = 'USER_ENTERED';
+      const resource = {
+        values: [[ipAddress]],
+      };
+      const result = await gapi.client.sheets.spreadsheets.values.update({
+        spreadsheetId,
+        range,
+        valueInputOption,
+        resource,
+      });
+      console.log(`${result.result.updatedCells} cells updated.`);
+    }
+  </script>
 </body>
 </html>
