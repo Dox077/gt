@@ -9,8 +9,9 @@ const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v
 const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
 
 // Initialize the Google API client
-gapi.load('client:auth2', initClient);
-
+function handleClientLoad() {
+  gapi.load('client:auth2', initClient);
+}
 function initClient() {
   gapi.client.init({
     clientId: CLIENT_ID,
