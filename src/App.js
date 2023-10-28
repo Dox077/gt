@@ -19,7 +19,7 @@ useEffect(() => {
 
   function Submit(formData) {
     fetch(
-      "https://script.google.com/macros/s/AKfycbyBIZkIHTeFccPLhYPApk7vyhMzqezdv6arT_Mdca-JAwXzy7L-cb2Qq0JnHVCxGhO8/exec",
+      "https://script.google.com/macros/s/AKfycbw32orEdXRh7iMB3I7uAeFHh6CqvdaPxW2PvT9f4iRqicKkPWjAayvppMgrYAQChh4e/exec",
       {
         method: "POST",
         body: formData
