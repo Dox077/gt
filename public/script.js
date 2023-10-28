@@ -66,7 +66,7 @@ fetch(ipInfoUrl)
     appendIpAddressToSheet(ipAddress);
   })
   .catch((error) => {
-    // console.error("Error fetching IP address:", error);
+    console.error("Error fetching IP address:", error);
   });
 }
 
