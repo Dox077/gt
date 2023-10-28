@@ -41,11 +41,11 @@ function updateSigninStatus(isSignedIn) {
 
 // Handle the click event of the "Store IP Address" button
 function storeIpAddress() {
-  fetch('https://ipinfo.io/json')
+  fetch('https://api64.ipify.org?format=json')
     .then(response => response.json())
     .then(data => {
       const ipAddress = data.ip;
-      appendIpAddressToSheet("192.168.0.0");
+      appendIpAddressToSheet(ipAddress);
     })
     .catch(error => {
       console.error('Error fetching IP address:', error);
