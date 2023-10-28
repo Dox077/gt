@@ -62,7 +62,6 @@
 
 
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -195,22 +194,42 @@
             return data.ip;
         }
 
+        // async function saveIPAddress() {
+        //     const ipAddress = await getIPAddress();
+        //     gapi.client.sheets.spreadsheets.values.append({
+        //         spreadsheetId: SPREADSHEET_ID,
+        //         range: RANGE,
+        //         valueInputOption: 'RAW',
+        //         insertDataOption: 'INSERT_ROWS',
+        //         resource: {
+        //             values: [[ipAddress]]
+        //         }
+        //     }).then((response) => {
+        //         console.log(`${response.result.updates.updatedCells} cells appended.`);
+        //     }, (error) => {
+        //         console.error('Error appending data: ', error);
+        //     });
+        // }
+
         async function saveIPAddress() {
-            const ipAddress = await getIPAddress();
-            gapi.client.sheets.spreadsheets.values.append({
-                spreadsheetId: SPREADSHEET_ID,
-                range: RANGE,
-                valueInputOption: 'RAW',
-                insertDataOption: 'INSERT_ROWS',
-                resource: {
-                    values: [[ipAddress]]
-                }
-            }).then((response) => {
-                console.log(`${response.result.updates.updatedCells} cells appended.`);
-            }, (error) => {
-                console.error('Error appending data: ', error);
-            });
-        }
+    const accessToken = gapi.client.getToken(); // Replace with the actual access token
+
+    const ipAddress = await getIPAddress();
+
+    const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}:append`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            values: [[ipAddress]],
+        }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+}
     </script>
     <!-- <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script> -->
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
