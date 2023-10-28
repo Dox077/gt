@@ -14,15 +14,21 @@
     // Set up the authentication credentials
     function initClient() {
       gapi.client.init({
-        apiKey: 'AIzaSyA-hcANdJmipBAeDxGO7A7I2Xao5xex0XE',
+        apiKey: 'AIzaSyBXpnYTLYkETxcPNkYMK-c_4NiQu92kVMc',
         clientId: '1023049278699-489s2oqrr75au1a0e214hjvtqr99kfbk.apps.googleusercontent.com',
         discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
         scope: 'https://www.googleapis.com/auth/spreadsheets',
       }).then(() => {
-        console.log('Google Sheets API initialized.');
-      }, (error) => {
-        console.error('Error initializing Google Sheets API:', error);
-      });
+    console.log('Google Sheets API initialized.');
+    // Authenticate the user and obtain an access token
+    gapi.auth2.getAuthInstance().signIn().then(() => {
+      console.log('User authenticated.');
+    }, (error) => {
+      console.error('Error authenticating user:', error);
+    });
+  }, (error) => {
+    console.error('Error initializing Google Sheets API:', error);
+  });
     }
 
     // Get the IP address of the user
@@ -41,13 +47,15 @@
       const resource = {
         values: [[ipAddress]],
       };
-      const result = await gapi.client.sheets.spreadsheets.values.update({
-        spreadsheetId,
-        range,
-        valueInputOption,
-        resource,
-      });
-      console.log(`${result.result.updatedCells} cells updated.`);
+      const accessToken = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
+  const headers = new Headers();
+  headers.append('Authorization', `Bearer ${accessToken}`);
+  const result = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?valueInputOption=${valueInputOption}`, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify(resource),
+  });
+  console.log(`${result.updatedCells} cells updated.`);
     }
   </script>
 </body>
