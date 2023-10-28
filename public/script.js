@@ -43,17 +43,31 @@ function updateSigninStatus(isSignedIn) {
 
 // Handle the click event of the "Store IP Address" button
 function storeIpAddress() {
-  fetch('https://api64.ipify.org?format=json')
-    .then(response => response.json())
-    .then(data => {
-      const ipAddress = data.ip;
-      appendIpAddressToSheet(ipAddress);
-      console.error(ipAddress)
-    })
-    .catch(error => {
-      console.error(ipAddress)
-      console.error('Error fetching IP address:', error);
-    });
+  // fetch('https://api64.ipify.org?format=json')
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     const ipAddress = data.ip;
+  //     appendIpAddressToSheet(ipAddress);
+  //     console.error(ipAddress)
+  //   })
+  //   .catch(error => {
+  //     console.error(ipAddress)
+  //     console.error('Error fetching IP address:', error);
+  //   });
+
+
+  const ipInfoUrl = "https://httpbin.org/ip";
+
+fetch(ipInfoUrl)
+  .then((response) => response.json())
+  .then((data) => {
+    const ipAddress = data.origin;
+    console.log(`Your public IP address is: ${ipAddress}`);
+    appendIpAddressToSheet(ipAddress);
+  })
+  .catch((error) => {
+    console.error("Error fetching IP address:", error);
+  });
 }
 
 // Append the IP address to the Google Sheet
