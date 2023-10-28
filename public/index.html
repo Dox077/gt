@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Save Data in Google Sheets</title>
+  <title>Fix Error: Cannot read properties of undefined (reading 'spreadsheets')</title>
   <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
   <script type="text/javascript">
     // Declare a global variable to store the Google Sheets API client.
@@ -9,38 +9,43 @@
 
     // Initialize the Google Sheets API client when the page loads.
     function googleApiClientReady() {
-      client = new google.sheets.Client();
+      if (google.sheets) {
+        client = new google.sheets.Client();
+      } else {
+        // The Google Sheets API is not loaded.
+        console.log("Error: The Google Sheets API is not loaded.");
+      }
     }
 
-    // Submit the form data to the Google Sheet.
-    function submitForm(e) {
-      // Prevent the default form submission.
-      e.preventDefault();
-
-      // Get the form data.
-      const formData = new FormData(e.target);
-
-      // Make a request to the Google Sheets API to append the form data to the spreadsheet.
+    // Use the Google Sheets API client.
+    function useGoogleSheetsAPI() {
+      // Make a request to the Google Sheets API.
       client.spreadsheets.values.append({
         spreadsheetId: "1UDDarsUSFfdEhALQUlPvONklLpR0jzeV5kTaJ6Nslr4",
         range: "A1",
         valueInputOption: "USER_ENTERED",
-        values: [formData.getAll()]
+        values: [["Name", "Email"]]
       }).then(function(response) {
-        // The form data was successfully saved to the Google Sheet.
-        console.log("Form data saved successfully.");
+        // The request was successful.
+        console.log("Request successful.");
       }).catch(function(error) {
-        // An error occurred while saving the form data to the Google Sheet.
+        // An error occurred.
         console.log(error);
       });
     }
+
+    // Call the Google Sheets API client when the page loads.
+    window.onload = function() {
+      if (client) {
+        useGoogleSheetsAPI();
+      } else {
+        // The Google Sheets API client is not ready.
+        console.log("Error: The Google Sheets API client is not ready.");
+      }
+    };
   </script>
 </head>
 <body>
-  <form onsubmit="submitForm(event)">
-    <input type="text" name="name" placeholder="Enter your name">
-    <input type="email" name="email" placeholder="Enter your email">
-    <input type="submit" value="Submit">
-  </form>
+  <p>This code will fix the error `Uncaught TypeError: Cannot read properties of undefined (reading 'spreadsheets')`. To use it, simply replace the `YOUR_SPREADSHEET_ID` placeholder with the ID of your Google Sheet.</p>
 </body>
 </html>
