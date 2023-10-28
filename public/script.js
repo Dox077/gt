@@ -26,6 +26,8 @@ function initClient() {
 
     // Handle the initial sign-in state
     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+  }).catch(function (error) {
+    console.error('Error initializing Google API client:', error);
   });
 }
 
