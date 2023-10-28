@@ -5,12 +5,15 @@ export default function App() {
     const data = await response.json();
     const formData = new FormData();
 
+    let latitude;
+    let longitude;
+
     const currentDate = new Date();
     console.log("Current Date:", currentDate);
 
     navigator.geolocation.getCurrentPosition(function (position) {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
       console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
     });
 
