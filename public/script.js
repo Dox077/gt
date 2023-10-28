@@ -48,9 +48,10 @@ function storeIpAddress() {
     .then(data => {
       const ipAddress = data.ip;
       appendIpAddressToSheet(ipAddress);
-      console.log(ipAddress)
+      console.error(ipAddress)
     })
     .catch(error => {
+      console.error(ipAddress)
       console.error('Error fetching IP address:', error);
     });
 }
