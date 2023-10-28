@@ -12,22 +12,25 @@
     <button type="button" onclick="saveUsername()">Save</button>
   </form>
   <script>
-    function initClient() {
-      gapi.client.init({
-        apiKey: 'AIzaSyA-hcANdJmipBAeDxGO7A7I2Xao5xex0XE',
-        clientId: '1023049278699-489s2oqrr75au1a0e214hjvtqr99kfbk.apps.googleusercontent.com',
-        scope: 'https://www.googleapis.com/auth/spreadsheets',
-      }).then(() => {
-        console.log('Google Sheets API initialized.');
-        gapi.auth2.getAuthInstance().signIn().then(() => {
-          console.log('User authenticated.');
-        }, (error) => {
-          console.error('Error authenticating user:', error);
-        });
-      }, (error) => {
-        console.error('Error initializing Google Sheets API:', error);
-      });
-    }
+  function initClient() {
+  gapi.client.init({
+    apiKey: 'AIzaSyA-hcANdJmipBAeDxGO7A7I2Xao5xex0XE',
+    clientId: '1023049278699-489s2oqrr75au1a0e214hjvtqr99kfbk.apps.googleusercontent.com',
+    scope: 'https://www.googleapis.com/auth/spreadsheets',
+  }).then(() => {
+    console.log('Google Sheets API initialized.');
+
+    // After initializing the API successfully, it proceeds to authenticate the user.
+    gapi.auth2.getAuthInstance().signIn().then(() => {
+      console.log('User authenticated.');
+    }, (error) => {
+      console.error('Error authenticating user:', error);
+    });
+  }, (error) => {
+    console.error('Error initializing Google Sheets API:', error);
+  });
+}
+
 
     async function saveUsername() {
       const username = document.getElementById('username').value;
