@@ -7,7 +7,7 @@ const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v
 const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
 
 function handleClientLoad() {
-    gapi.load('client:auth2', initClient);
+  gapi.load('client:auth2', initClient);
 }
 
 function initClient() {
