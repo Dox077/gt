@@ -9,10 +9,8 @@ const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v
 // Authorized scopes
 const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
 
-// Load the Google Sheets API and authenticate the user
-function handleClientLoad() {
-  gapi.load('client:auth2', initClient);
-}
+// Initialize the Google API client
+gapi.load('client:auth2', initClient);
 
 function initClient() {
   gapi.client.init({
@@ -26,8 +24,6 @@ function initClient() {
 
     // Handle the initial sign-in state
     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-  }).catch(function (error) {
-    console.error('Error initializing Google API client:', error);
   });
 }
 
@@ -43,31 +39,15 @@ function updateSigninStatus(isSignedIn) {
 
 // Handle the click event of the "Store IP Address" button
 function storeIpAddress() {
-  // fetch('https://api64.ipify.org?format=json')
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     const ipAddress = data.ip;
-  //     appendIpAddressToSheet(ipAddress);
-  //     console.error(ipAddress)
-  //   })
-  //   .catch(error => {
-  //     console.error(ipAddress)
-  //     console.error('Error fetching IP address:', error);
-  //   });
-
-
-  const ipInfoUrl = "https://httpbin.org/ip";
-
-fetch(ipInfoUrl)
-  .then((response) => response.json())
-  .then((data) => {
-    const ipAddress = data.origin;
-    console.log(`Your public IP address is: ${ipAddress}`);
-    appendIpAddressToSheet(ipAddress);
-  })
-  .catch((error) => {
-    console.error("Error fetching IP address:", error);
-  });
+  fetch('https://api64.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+      const ipAddress = data.ip;
+      appendIpAddressToSheet(ipAddress);
+    })
+    .catch(error => {
+      console.error('Error fetching IP address:', error);
+    });
 }
 
 // Append the IP address to the Google Sheet
@@ -83,8 +63,95 @@ function appendIpAddressToSheet(ipAddress) {
   }).then(function (response) {
     console.log('IP Address stored in Google Sheet:', response);
     alert('IP Address stored in Google Sheet');
-  }, function (error) {
+  }).catch(function (error) {
     console.error('Error storing IP address in Google Sheet:', error);
     alert('Failed to store IP address in Google Sheet');
   });
 }
+
+
+// // Array with Google Sheets API discovery documents
+// const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v4'];
+
+// // Authorized scopes
+// const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
+
+// // Load the Google Sheets API and authenticate the user
+// function handleClientLoad() {
+//   gapi.load('client:auth2', initClient);
+// }
+
+// function initClient() {
+//   gapi.client.init({
+//     apiKey: API_KEY,
+//     clientId: CLIENT_ID,
+//     discoveryDocs: DISCOVERY_DOCS,
+//     scope: SCOPES,
+//   }).then(function () {
+//     // Listen for sign-in state changes
+//     gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+//     // Handle the initial sign-in state
+//     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+//   }).catch(function (error) {
+//     console.error('Error initializing Google API client:', error);
+//   });
+// }
+
+// function updateSigninStatus(isSignedIn) {
+//   if (isSignedIn) {
+//     // User is signed in, enable the "Store IP Address" button
+//     document.getElementById('storeButton').disabled = false;
+//   } else {
+//     // User is not signed in, disable the "Store IP Address" button
+//     document.getElementById('storeButton').disabled = true;
+//   }
+// }
+
+// // Handle the click event of the "Store IP Address" button
+// function storeIpAddress() {
+//   // fetch('https://api64.ipify.org?format=json')
+//   //   .then(response => response.json())
+//   //   .then(data => {
+//   //     const ipAddress = data.ip;
+//   //     appendIpAddressToSheet(ipAddress);
+//   //     console.error(ipAddress)
+//   //   })
+//   //   .catch(error => {
+//   //     console.error(ipAddress)
+//   //     console.error('Error fetching IP address:', error);
+//   //   });
+
+
+//   const ipInfoUrl = "https://httpbin.org/ip";
+
+// fetch(ipInfoUrl)
+//   .then((response) => response.json())
+//   .then((data) => {
+//     const ipAddress = data.origin;
+//     console.log(`Your public IP address is: ${ipAddress}`);
+//     appendIpAddressToSheet(ipAddress);
+//   })
+//   .catch((error) => {
+//     console.error("Error fetching IP address:", error);
+//   });
+// }
+
+// // Append the IP address to the Google Sheet
+// function appendIpAddressToSheet(ipAddress) {
+//   gapi.client.sheets.spreadsheets.values.append({
+//     spreadsheetId: SPREADSHEET_ID,
+//     range: 'Ip', // Update with your sheet name and range
+//     valueInputOption: 'RAW',
+//     insertDataOption: 'INSERT_ROWS',
+//     resource: {
+//       values: [[ipAddress]],
+//     },
+//   }).then(function (response) {
+//     console.log('IP Address stored in Google Sheet:', response);
+//     alert('IP Address stored in Google Sheet');
+//   }, function (error) {
+//     console.error('Error storing IP address in Google Sheet:', error);
+//     alert('Failed to store IP address in Google Sheet');
+//   });
+// }
