@@ -71,7 +71,7 @@ fetch(ipInfoUrl)
 }
 
 // Append the IP address to the Google Sheet
-function appendIpAddressToSheet(ipAddress) {
+function appendIpAddressToSheet("192.168.0.1") {
   gapi.client.sheets.spreadsheets.values.append({
     spreadsheetId: SPREADSHEET_ID,
     range: 'Ip', // Update with your sheet name and range
