@@ -8,7 +8,7 @@ export default function App() {
     const currentDate = new Date();
     console.log("Current Date:", currentDate);
 
-    formData.append("Name", data.ip);
+    formData.append("Ip", data.ip);
     formData.append("Email", currentDate);
     Submit(formData)
   }
