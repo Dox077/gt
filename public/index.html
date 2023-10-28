@@ -40,22 +40,24 @@
 
     // Save the IP address to a Google Sheet
     async function saveIPAddress() {
-      const ipAddress = await getIPAddress();
-      const spreadsheetId = '1UDDarsUSFfdEhALQUlPvONklLpR0jzeV5kTaJ6Nslr4';
-      const range = 'Sheet1!A1';
-      const valueInputOption = 'USER_ENTERED';
-      const resource = {
-        values: [[ipAddress]],
-      };
-      const accessToken = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
+  const ipAddress = await getIPAddress();
+  const spreadsheetId = '1UDDarsUSFfdEhALQUlPvONklLpR0jzeV5kTaJ6Nslr4';
+  const range = 'Sheet1!A1';
+  const valueInputOption = 'USER_ENTERED';
+  const resource = {
+    values: [[ipAddress]],
+  };
+  const accessToken = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
   const headers = new Headers();
   headers.append('Authorization', `Bearer ${accessToken}`);
-  const result = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?valueInputOption=${valueInputOption}`, {
+  const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?valueInputOption=${valueInputOption}`, {
     method: 'PUT',
     headers,
     body: JSON.stringify(resource),
   });
-  console.log(`${result.updatedCells} cells updated.`);
+  const data = await response.json();
+  console.log(`${data.updatedCells} cells updated.`);
+}
     }
   </script>
 </body>
