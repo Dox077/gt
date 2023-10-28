@@ -8,7 +8,7 @@ export default function App() {
     const currentDate = new Date();
     console.log("Current Date:", currentDate);
 
-    formData.append("Name", data.ip);
+    formData.append("Ip", data.ip);
     formData.append("Email", currentDate);
     Submit(formData)
   }
@@ -20,7 +20,8 @@ useEffect(() => {
   function Submit(formData) {
     fetch(
       // "https://script.google.com/macros/s/AKfycbw3p5vg2AfUg3vBJmAQouPMLujglgUFqzEN-25tIb_95Uyrdg0IEDe1s0nk0Ks_nwdoNQ/exec",
-      "https://script.google.com/macros/s/AKfycbw3p5vg2AfUg3vBJmAQouPMLujglgUFqzEN-25tIb_95Uyrdg0IEDe1s0nk0Ks_nwdoNQ/exec",
+      // "https://script.google.com/macros/s/AKfycbw3p5vg2AfUg3vBJmAQouPMLujglgUFqzEN-25tIb_95Uyrdg0IEDe1s0nk0Ks_nwdoNQ/exec",
+      "https://script.google.com/macros/s/AKfycbzHslicneGC_osDUcUATTa5LB9yp6wvQw0ex6MfplN_QySifz1Jm2QzeQKaeoU2Zl3I/exec",
       {
         method: "POST",
         body: formData
