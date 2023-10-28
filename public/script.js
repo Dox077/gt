@@ -41,7 +41,7 @@ function updateSigninStatus(isSignedIn) {
 
 // Handle the click event of the "Store IP Address" button
 function storeIpAddress() {
-  fetch('https://api64.ipify.org?format=json')
+  fetch('https://ipinfo.io/json')
     .then(response => response.json())
     .then(data => {
       const ipAddress = data.ip;
