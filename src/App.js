@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react'
+export default function App() {
+  async function getIPAddress() {
+    const response = await fetch('https://api64.ipify.org?format=json');
+    const data = await response.json();
+    const formData = new FormData();
 
-function App() {
+    formData.append("Name", data.ip);
+    Submit(formData)
+  }
+
+useEffect(() => {
+  getIPAddress()
+}, [])
+
+  function Submit(formData) {
+    fetch(
+      "https://script.google.com/macros/s/AKfycbwxxzsUJtQEb2lWIUkxLsBYiX9xKzMzi243srgXDW02ySGgWKU-pTy6ldxC-GkCEHmV4A/exec",
+      {
+        method: "POST",
+        body: formData
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="App" />
   );
 }
-
-export default App;
