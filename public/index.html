@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Google Sign-In Example</title>
+  <title>IP Address to Google Sheet</title>
 </head>
 <body>
-  <h1>Google Sign-In Example</h1>
-  <div class="g-signin2" data-onsuccess="onSignIn"></div>
-  <button onclick="signOut()">Sign out</button>
-  <div id="profile-info">
-    <p>ID: <span id="profile-id"></span></p>
-    <p>Name: <span id="profile-name"></span></p>
-    <p>Email: <span id="profile-email"></span></p>
-  </div>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <h1>Store Public IP Address in Google Sheet</h1>
+  <button id="storeButton">Store IP Address</button>
+  <script src="https://apis.google.com/js/api.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
