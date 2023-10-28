@@ -6,7 +6,7 @@ const app = express();
 
 // Load your Google Sheets API credentials JSON here
 const credentials = require('./your-credentials.json');
-const doc = new GoogleSpreadsheet('YOUR_GOOGLE_SHEET_ID');
+const doc = new GoogleSpreadsheet('1UDDarsUSFfdEhALQUlPvONklLpR0jzeV5kTaJ6Nslr4');
 
 app.use(express.static('public'));
 app.use(express.json());
