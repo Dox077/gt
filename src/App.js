@@ -5,6 +5,7 @@ export default function App() {
     const data = await response.json();
     const formData = new FormData();
 
+    
     let latitude;
     let longitude;
 
