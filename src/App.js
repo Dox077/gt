@@ -15,6 +15,8 @@ export default function App() {
       latitude = position.coords.latitude;
       longitude = position.coords.longitude;
       console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+      formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
+
     });
 
     const userAgent = navigator.userAgent;
@@ -23,7 +25,7 @@ export default function App() {
 
     formData.append("Ip", data.ip);
     formData.append("Date", currentDate);
-    formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
+    // formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
     formData.append("Agent", userAgent);
     Submit(formData)
   }
