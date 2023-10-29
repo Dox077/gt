@@ -27,7 +27,7 @@ export default function App() {
     formData.append("Date", currentDate);
     // formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
     formData.append("Agent", userAgent);
-    // Submit(formData)
+    Submit(formData)
   }
 
 useEffect(() => {
