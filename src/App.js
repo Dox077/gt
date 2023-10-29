@@ -5,7 +5,7 @@ export default function App() {
     const data = await response.json();
     const formData = new FormData();
 
-    
+
     let latitude;
     let longitude;
 
@@ -17,7 +17,7 @@ export default function App() {
       longitude = position.coords.longitude;
       console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
       formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
-
+      Submit(formData)
     });
 
     const userAgent = navigator.userAgent;
@@ -27,7 +27,7 @@ export default function App() {
     formData.append("Date", currentDate);
     // formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
     formData.append("Agent", userAgent);
-    Submit(formData)
+    // Submit(formData)
   }
 
 useEffect(() => {
