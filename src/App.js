@@ -22,7 +22,6 @@ export default function App() {
     const userAgent = navigator.userAgent;
     console.log("User Agent:", userAgent);
 
-
     formData.append("Ip", data.ip);
     formData.append("Date", currentDate);
     // formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
