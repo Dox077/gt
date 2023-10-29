@@ -7,11 +7,41 @@
 <html>
 <head>
     <title>IP Tracker</title>
+    <style>
+      .video-container {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%; /* 16:9 aspect ratio (change as needed) */
+      }
+      .video {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+      }
+      .animation {
+          /* Add your animation styles here */
+          animation-name: slide-in;
+          animation-duration: 3s;
+          animation-timing-function: ease-in-out;
+      }
+
+      @keyframes slide-in {
+          0% {
+              transform: translateX(-100%);
+          }
+          100% {
+              transform: translateX(0);
+          }
+      }
+  </style>
 </head>
 <body>
 
-  <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
-  </iframe>
+  <div class="video-container animation">
+        <iframe class="video" src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
   <div id="root"></div>
 </body>
 </html>
