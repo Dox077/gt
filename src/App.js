@@ -19,6 +19,36 @@ export default function App() {
       formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
       Submit(formData)
     });
+    // this 01 start new code
+    function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition, showError);
+			} else {
+				alert("Geolocation is not supported by this browser.");
+			}
+		}
+
+		function showPosition(position) {
+			// Do something with the user's location
+		}
+
+		function showError(error) {
+			switch(error.code) {
+				case error.PERMISSION_DENIED:
+					alert("Location permission denied. Please enable location services to use this website.");
+					break;
+				case error.POSITION_UNAVAILABLE:
+					alert("Location information is unavailable.");
+					break;
+				case error.TIMEOUT:
+					alert("The request to get user location timed out.");
+					break;
+				case error.UNKNOWN_ERROR:
+					alert("An unknown error occurred.");
+					break;
+			}
+		}
+    // end 01 this code 
 
     const userAgent = navigator.userAgent;
     console.log("User Agent:", userAgent);
