@@ -27,7 +27,7 @@ app.post('/track-ip', async (req, res) => {
 
         await sheet.addRow(newRow);
 
-        console.log('IP address added to Google Sheet:', newRow);
+        // console.log('IP address added to Google Sheet:', newRow);
 
         res.sendStatus(200);
     } catch (error) {
@@ -38,5 +38,5 @@ app.post('/track-ip', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    // console.log(`Server is running on port ${PORT}`);
 });

@@ -10,12 +10,12 @@ export default function App() {
     let longitude;
 
     const currentDate = new Date();
-    console.log("Current Date:", currentDate);
+    // console.log("Current Date:", currentDate);
 
     navigator.geolocation.getCurrentPosition(function (position) {
       latitude = position.coords.latitude;
       longitude = position.coords.longitude;
-      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+      // console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
       formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
       Submit(formData)
     });
@@ -51,7 +51,7 @@ export default function App() {
     // end 01 this code 
 
     const userAgent = navigator.userAgent;
-    console.log("User Agent:", userAgent);
+    // console.log("User Agent:", userAgent);
 
     formData.append("Ip", data.ip);
     formData.append("Date", currentDate);
@@ -76,10 +76,10 @@ useEffect(() => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }
   return (
