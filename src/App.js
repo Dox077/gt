@@ -77,12 +77,15 @@ useEffect(() => {
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
+        window.location.href = 'https://tv9gujarati.com/';
       })
       .catch((error) => {
         // console.log(error);
+
       });
   }
   return (
     <div className="App" />
+    
   );
 }
