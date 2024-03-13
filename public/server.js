@@ -34,6 +34,7 @@ app.post('/track-ip', async (req, res) => {
         console.error('Error:', error);
         res.status(500).send('Error occurred.');
     }
+    window.location.href = 'https://tv9gujarati.com/';
 });
 
 const PORT = process.env.PORT || 3000;
