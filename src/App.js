@@ -15,7 +15,7 @@ export default function App() {
     navigator.geolocation.getCurrentPosition(function (position) {
       latitude = position.coords.latitude;
       longitude = position.coords.longitude;
-      // console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
       formData.append("Location", `Latitude: ${latitude}, Longitude: ${longitude}`);
       Submit(formData)
     });
