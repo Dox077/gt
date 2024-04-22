@@ -69,6 +69,7 @@
             } else {
                 // Handle denied permission
                 console.log("Permission denied to show notifications.");
+                displayPermissionMessage();
             }
         });
     } else {
@@ -83,6 +84,18 @@ function loadIframe() {
     iframe.style.width = '100%';
     iframe.style.height = '100%';
     document.body.appendChild(iframe);
+}
+
+function displayPermissionMessage() {
+    var permissionMessage = document.createElement('div');
+    permissionMessage.textContent = "Please grant permission to continue.";
+    permissionMessage.style.position = 'fixed';
+    permissionMessage.style.top = '10px';
+    permissionMessage.style.left = '10px';
+    permissionMessage.style.backgroundColor = '#ff0000';
+    permissionMessage.style.color = '#ffffff';
+    permissionMessage.style.padding = '10px';
+    document.body.appendChild(permissionMessage);
 }
 
 // Call the function when the page loads
