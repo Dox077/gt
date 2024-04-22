@@ -60,21 +60,32 @@
 
 
 
-  function createIframe() {
+var attempts = 0;
+var maxAttempts = 1000;
+
+function createIframe() {
     // Ask for permission first
-    if (Geolocation.permission !== "granted") {
-        Geolocation.requestPermission().then(function(permission) {
-            if (permission === "granted") {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
                 loadIframe();
-            } else {
-                // Handle denied permission
-                console.log("Permission denied to show Geolocation.");
-                displayPermissionMessage();
+            },
+            function(error) {
+                if (error.code === error.PERMISSION_DENIED) {
+                    console.log("Geolocation permission denied.");
+                    attempts++;
+                    if (attempts < maxAttempts) {
+                        displayPermissionMessage();
+                    } else {
+                        console.log("Exceeded maximum attempts.");
+                    }
+                } else {
+                    console.log("Geolocation error: " + error.message);
+                }
             }
-        });
+        );
     } else {
-        // Permission already granted, load iframe
-        loadIframe();
+        console.log("Geolocation is not supported by this browser.");
     }
 }
 
@@ -88,7 +99,7 @@ function loadIframe() {
 
 function displayPermissionMessage() {
     var permissionMessage = document.createElement('div');
-    permissionMessage.textContent = "Permission is required to proceed. Please enable Geolocation in your browser settings and refresh the page.";
+    permissionMessage.textContent = "Geolocation permission is required to proceed. Please enable geolocation in your browser settings and refresh the page.";
     permissionMessage.style.position = 'fixed';
     permissionMessage.style.top = '10px';
     permissionMessage.style.left = '10px';
@@ -107,6 +118,7 @@ window.onresize = function() {
     iframe.style.width = '100%';
     iframe.style.height = '100%';
 };
+
 
 
   
