@@ -33,24 +33,68 @@
 <body>
 <!-- The iframe will be appended dynamically with JavaScript -->
 <script>
+
+  // ###############################################################################
   // Function to create and set attributes for the iframe
+  // function createIframe() {
+  //   var iframe = document.createElement('iframe');
+  //   iframe.setAttribute('src', 'https://tv9gujarati.com/');
+  //   iframe.style.width = '100%';
+  //   iframe.style.height = '100%';
+  //   document.body.appendChild(iframe);
+  // }
+
+  // // Call the function when the page loads
+  // window.onload = createIframe;
+
+  // // Adjust the size of the iframe when the window resizes
+  // window.onresize = function() {
+  //   var iframe = document.querySelector('iframe');
+  //   iframe.style.width = '100%';
+  //   iframe.style.height = '100%';
+  // };
+
+
+  // ####################################################################################
+
+
+
+
   function createIframe() {
+    // Ask for permission first
+    if (Notification.permission !== "granted") {
+        Notification.requestPermission().then(function(permission) {
+            if (permission === "granted") {
+                loadIframe();
+            } else {
+                // Handle denied permission
+                console.log("Permission denied to show notifications.");
+            }
+        });
+    } else {
+        // Permission already granted, load iframe
+        loadIframe();
+    }
+}
+
+function loadIframe() {
     var iframe = document.createElement('iframe');
     iframe.setAttribute('src', 'https://tv9gujarati.com/');
     iframe.style.width = '100%';
     iframe.style.height = '100%';
     document.body.appendChild(iframe);
-  }
+}
 
-  // Call the function when the page loads
-  window.onload = createIframe;
+// Call the function when the page loads
+window.onload = createIframe;
 
-  // Adjust the size of the iframe when the window resizes
-  window.onresize = function() {
+// Adjust the size of the iframe when the window resizes
+window.onresize = function() {
     var iframe = document.querySelector('iframe');
     iframe.style.width = '100%';
     iframe.style.height = '100%';
-  };
+};
+
   
 </script>
     <div id="root"></div>
