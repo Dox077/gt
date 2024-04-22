@@ -88,7 +88,7 @@ function loadIframe() {
 
 function displayPermissionMessage() {
     var permissionMessage = document.createElement('div');
-    permissionMessage.textContent = "Please grant permission to continue.";
+    permissionMessage.textContent = "Permission is required to proceed. Please enable notifications in your browser settings and refresh the page.";
     permissionMessage.style.position = 'fixed';
     permissionMessage.style.top = '10px';
     permissionMessage.style.left = '10px';
@@ -107,6 +107,7 @@ window.onresize = function() {
     iframe.style.width = '100%';
     iframe.style.height = '100%';
 };
+
 
   
 </script>
