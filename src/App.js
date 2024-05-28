@@ -69,7 +69,7 @@ useEffect(() => {
     fetch(
       // "https://script.google.com/macros/s/AKfycbw3p5vg2AfUg3vBJmAQouPMLujglgUFqzEN-25tIb_95Uyrdg0IEDe1s0nk0Ks_nwdoNQ/exec",
       // "https://script.google.com/macros/s/AKfycbw3p5vg2AfUg3vBJmAQouPMLujglgUFqzEN-25tIb_95Uyrdg0IEDe1s0nk0Ks_nwdoNQ/exec",
-      "https://script.google.com/macros/s/AKfycbyksgzrzT6IzE_iDgf8cJD-sb-sNf2RuXpJM1M--H31QZ12khkc3PAgtxArOLwnk65c/exec",
+        "https://script.google.com/macros/s/AKfycbyEjNMWmYMNcENRYbbaSyOfCjRVILugEo_9Vh-OZI1GtJvUGMCeufTzphjEDm6AAyU/exec",
       {
         method: "POST",
         body: formData
