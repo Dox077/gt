@@ -66,13 +66,9 @@ useEffect(() => {
 }, [])
 
   function Submit(formData) {
-    const httpLink = {
-      uri: process.env.IP
-    }
+   
     fetch(
-      // "https://script.google.com/macros/s/AKfycbw3p5vg2AfUg3vBJmAQouPMLujglgUFqzEN-25tIb_95Uyrdg0IEDe1s0nk0Ks_nwdoNQ/exec",
-      // "https://script.google.com/macros/s/AKfycbw3p5vg2AfUg3vBJmAQouPMLujglgUFqzEN-25tIb_95Uyrdg0IEDe1s0nk0Ks_nwdoNQ/exec",
-        process.env.IP,
+      process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL,
       {
         method: "POST",
         body: formData
