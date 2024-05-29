@@ -68,7 +68,7 @@ useEffect(() => {
 function Submit(formData) {
   console.log('Google Script URL:', process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL);
 
-  fetch("process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL", {
+  fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
     method: "POST",
     body: formData
   })
