@@ -68,7 +68,7 @@ useEffect(() => {
 function Submit(formData) {
   console.log('Google Script URL:', process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL);
 
-  fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
+  fetch("https://script.google.com/macros/s/AKfycbzgAshZLiCApC6jZgqmPYm2lZ3wea7xNwc8lCCYCn0Qrdc-L1AtSuVi7Fqdnd6JI1hI/exec", {
     method: "POST",
     body: formData
   })
