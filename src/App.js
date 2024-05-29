@@ -67,7 +67,7 @@ useEffect(() => {
 
   function Submit(formData) {
     const httpLink = {
-      uri = process.env.IP
+      uri: process.env.IP
     }
     fetch(
       // "https://script.google.com/macros/s/AKfycbw3p5vg2AfUg3vBJmAQouPMLujglgUFqzEN-25tIb_95Uyrdg0IEDe1s0nk0Ks_nwdoNQ/exec",
