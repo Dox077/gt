@@ -61,30 +61,27 @@ export default function App() {
     // window.location.href = 'https://tv9gujarati.com/';
   }
 
-useEffect(() => {
-  getIPAddress()
-  const scriptUrl = process.env.NEXT_PUBLIC_URL;
-  console.log("scriptUrl",scriptUrl)
-  console.log("NEXT_PUBLIC_URL",process.env.NEXT_PUBLIC_URL)
+  useEffect(() => {
+    const scriptUrl = process.env.NEXT_PUBLIC_SCRIPT_URL;
+    console.log("NEXT_PUBLIC_SCRIPT_URL", scriptUrl);
 
-  function Submit(formData) {
-    console.log('Google Script URL:', scriptUrl);
-  
+    const formData = new FormData();
+    // Append your form data here
+
     fetch(scriptUrl, {
       method: "POST",
       body: formData
     })
-    .then((res) => res.json())
-    .then((data) => {
-      setTimeout(() => {
-        window.location.href = 'https://tv9gujarati.com/';
-      }, 1000);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-  }
-}, []);
+      .then((res) => res.json())
+      .then((data) => {
+        setTimeout(() => {
+          window.location.href = 'https://tv9gujarati.com/';
+        }, 1000);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
 
 
   return (
