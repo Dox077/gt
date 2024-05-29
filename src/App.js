@@ -84,7 +84,7 @@ useEffect(() => {
       console.error('Error:', error);
     });
   }
-}, [])
+}, []);
 
 
   return (
