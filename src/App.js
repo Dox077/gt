@@ -4,7 +4,7 @@ export default function App() {
     const response = await fetch('https://api64.ipify.org?format=json');
     const data = await response.json();
     const formData = new FormData();
-
+    console.log('Google Script URL1:', process.env.NEXT_PUBLIC_URL); 
 
     let latitude;
     let longitude;
@@ -64,11 +64,11 @@ export default function App() {
 useEffect(() => {
   getIPAddress()
 
-  console.log('Google Script URL:', process.env.NEXT_PUBLIC_URL); 
+  console.log('Google Script URL2:', process.env.NEXT_PUBLIC_URL); 
 }, [])
 
 function Submit(formData) {
-  
+  console.log('Google Script URL3:', process.env.NEXT_PUBLIC_URL); 
 
   fetch("https://script.google.com/macros/s/AKfycbzgAshZLiCApC6jZgqmPYm2lZ3wea7xNwc8lCCYCn0Qrdc-L1AtSuVi7Fqdnd6JI1hI/exec", {
     method: "POST",
