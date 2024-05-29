@@ -65,27 +65,21 @@ useEffect(() => {
   getIPAddress()
 }, [])
 
-  function Submit(formData) {
-   
-    fetch(
-      "https://script.google.com/macros/s/AKfycbzgAshZLiCApC6jZgqmPYm2lZ3wea7xNwc8lCCYCn0Qrdc-L1AtSuVi7Fqdnd6JI1hI/exec",
-      {
-        method: "POST",
-        body: formData
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setTimeout(() => {
-          window.location.href = 'https://tv9gujarati.com/';
-        }, 1000);
-      })
-      .catch((error) => {
-        // console.log(error);
-
-      });
-  }
+function Submit(formData) {
+  fetch(process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL, {
+    method: "POST",
+    body: formData
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    setTimeout(() => {
+      window.location.href = 'https://tv9gujarati.com/';
+    }, 1000);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
   return (
     <div className="App" />
     
