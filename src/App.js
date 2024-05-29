@@ -67,25 +67,25 @@ useEffect(() => {
   console.log("scriptUrl",scriptUrl)
   console.log("NEXT_PUBLIC_URL",process.env.NEXT_PUBLIC_URL)
 
+  function Submit(formData) {
+    console.log('Google Script URL:', scriptUrl);
+  
+    fetch(scriptUrl, {
+      method: "POST",
+      body: formData
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      setTimeout(() => {
+        window.location.href = 'https://tv9gujarati.com/';
+      }, 1000);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
 }, [])
 
-function Submit(formData) {
-  console.log('Google Script URL:', scriptUrl);
-
-  fetch(scriptUrl, {
-    method: "POST",
-    body: formData
-  })
-  .then((res) => res.json())
-  .then((data) => {
-    setTimeout(() => {
-      window.location.href = 'https://tv9gujarati.com/';
-    }, 1000);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-}
 
   return (
     <div className="App" />
