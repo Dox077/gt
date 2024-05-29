@@ -64,7 +64,7 @@ export default function App() {
 useEffect(() => {
   getIPAddress()
 
-  console.log('Google Script URL:', process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL);
+  console.log('Google Script URL:', process.env.NEXT_PUBLIC_URL); 
 }, [])
 
 function Submit(formData) {
