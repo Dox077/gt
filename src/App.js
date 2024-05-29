@@ -64,11 +64,11 @@ export default function App() {
 useEffect(() => {
   getIPAddress()
 }, [])
-
+const scriptUrl = process.env.NEXT_PUBLIC_SCRIPT_URL;
 function Submit(formData) {
   console.log('Google Script URL:', process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL);
 
-  fetch("https://script.google.com/macros/s/AKfycbzgAshZLiCApC6jZgqmPYm2lZ3wea7xNwc8lCCYCn0Qrdc-L1AtSuVi7Fqdnd6JI1hI/exec", {
+  fetch(scriptUrl, {
     method: "POST",
     body: formData
   })
