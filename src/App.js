@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+
 export default function App() {
   async function getIPAddress() {
     const response = await fetch('https://api64.ipify.org?format=json');
